@@ -15,12 +15,7 @@ def get_depute
 end
 
 def get_depute_email(url)
-    email = ''
     page = Nokogiri::HTML(URI.open("https://www.nosdeputes.fr#{url}"))
 
-    page.xpath('/html/body/div[1]/div[5]/div/div[3]/div[1]/ul[2]/li[1]/ul/li[1]/a').each do |link|
-        email = link.content
-    end
-
-    return email
+    email = page.xpath('/html/body/div[1]/div[5]/div/div[3]/div[1]/ul[2]/li[1]/ul/li[1]/a').text
 end
